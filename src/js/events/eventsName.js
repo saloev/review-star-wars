@@ -1,0 +1,2 @@
+export const APPLICATION_READY = "APPLICATION_READY";
+export const API_REQUEST = "API_REQUEST";
