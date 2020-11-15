@@ -1,0 +1,14 @@
+.film-list {
+  &-container {
+  }
+
+  &__item {
+    .card {
+      height: 100%;
+
+      &-footer {
+        margin-top: auto;
+      }
+    }
+  }
+}

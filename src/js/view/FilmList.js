@@ -19,7 +19,7 @@ export default class FilmList extends BaseView {
     release_date: releaseDate,
   }) {
     return `
-    <div class="card">
+    <div class="card is-flex is-flex-direction-column">
       <header class="card-header has-text-center">
         <p class="card-header-title title">
           ${title}
@@ -49,11 +49,11 @@ export default class FilmList extends BaseView {
     super.setTitleAndSubtitle("STAR WARS", `Film list`);
     const list = this.filmList.reduce(
       (html, film) =>
-        `${html}<div class="column is-half">${this.filmTemplate(film)}</div>`,
+        `${html}<div class="film-list__item column is-half">${this.filmTemplate(film)}</div>`,
       ""
     );
     super.render(
-      `<div class="container"><div class="film-list columns is-multiline">${list}</div></div>`
+      `<div class="container film-list-container"><div class="film-list columns is-multiline">${list}</div></div>`
     );
   }
 

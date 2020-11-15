@@ -151,7 +151,7 @@ export default class Review extends BaseView {
     );
 
     const baseTemplate = `
-    <div class="container">
+    <div class="container px-4">
       <div class="is-flex is-justify-content-flex-start">
         <button class="back-btn is-primary button mb-4">Back</button>
       </div>
