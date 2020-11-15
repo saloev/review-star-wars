@@ -5,15 +5,21 @@ import APILoader from "./APIRequestProgressLoader";
 import AppLayout from "./AppLayout";
 import FilmList from "./FilmList";
 
+const Review = () => import(/* webpackChunkName: "Review" */ "./Review");
+
 export default () => {
   const components = [
     {
       component: BaseLayout,
-      waitUntilDataLoaded: true,
+      type: "waitUntilDataLoaded",
     },
     {
       component: FilmList,
-      waitUntilDataLoaded: true,
+      type: "waitUntilDataLoaded",
+    },
+    {
+      component: Review,
+      type: "asynchronous",
     },
     {
       component: APILoader,
@@ -23,12 +29,26 @@ export default () => {
     },
   ];
 
-  components.forEach(({ component: Component, waitUntilDataLoaded }) => {
-    if (waitUntilDataLoaded) {
-      reactiveData.subscribe(EventsName.APPLICATION_READY, () => {
-        const newComponent = new Component();
-        newComponent.init();
-      });
+  components.forEach(({ component: Component, type }) => {
+    const dispatchComponentsType = {
+      waitUntilDataLoaded: () => {
+        reactiveData.subscribe(EventsName.APPLICATION_READY, () => {
+          const newComponent = new Component();
+          newComponent.init();
+        });
+      },
+      asynchronous: () => {
+        reactiveData.subscribe(EventsName.LOAD_ASYNC_FILES, (data) => {
+          Component().then((module) => {
+            const newComponent = new module.default(data);
+            newComponent.init();
+          });
+        });
+      },
+    };
+
+    if (dispatchComponentsType[type]) {
+      dispatchComponentsType[type]();
     } else {
       const newComponent = new Component();
       newComponent.init();

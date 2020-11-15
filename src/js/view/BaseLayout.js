@@ -14,11 +14,9 @@ export default class BaseLayout extends BaseView {
         <section class="hero is-medium is-primary is-bold">
           <div class="hero-body">
             <div class="container">
-              <h1 class="title">
-                STAR WARS
+              <h1 class="title main-header__title">
               </h1>
-              <h2 class="subtitle">
-                Review STAR WARS films
+              <h2 class="subtitle main-header__subtitle">
               </h2>
             </div>
           </div>

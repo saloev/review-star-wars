@@ -4,7 +4,7 @@ import EventsName from "../events/index";
 
 import BaseView from "./BaseView";
 
-export default class BaseLayout extends BaseView {
+export default class FilmList extends BaseView {
   constructor() {
     super(".main-content");
     this.filmList = this.getFromLS("list");
@@ -34,7 +34,7 @@ export default class BaseLayout extends BaseView {
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#${id}" class="card-footer-item" data-film-id="${id}">Review</a>
+        <a href="#${id}" class="card-footer-item film__review-btn" data-film-id="${id}">Review</a>
       </footer>
     </div>
     `;
@@ -46,12 +46,25 @@ export default class BaseLayout extends BaseView {
   };
 
   renderHTML() {
+    super.setTitleAndSubtitle("STAR WARS", `Film list`);
     const list = this.filmList.reduce(
-      (html, film) => `${html}<div class="column is-half">${this.filmTemplate(film)}</div>`,
+      (html, film) =>
+        `${html}<div class="column is-half">${this.filmTemplate(film)}</div>`,
       ""
     );
-    super.render(`<div class="container"><div class="columns is-multiline">${list}</div></div>`);
+    super.render(
+      `<div class="container"><div class="film-list columns is-multiline">${list}</div></div>`
+    );
   }
 
-  initEvents = () => {};
+  initEvents = () => {
+    const wrapper = super.select(".film-list");
+    wrapper.onclick = ({ target }) => {
+      const id = target.dataset && target.dataset.filmId;
+      if (!id) return;
+      super.commit(EventsName.LOAD_ASYNC_FILES, id);
+      super.commit(EventsName.BACK_TO_FILM_PAGE, id);
+    };
+    super.listen(EventsName.BACK_TO_MAIN_PAGE, this.init);
+  };
 }

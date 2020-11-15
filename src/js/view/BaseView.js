@@ -91,7 +91,19 @@ export default class BaseView {
    * Render HTML string to node
    * @param {String} html
    */
-  render(html) {
-    DOM.renderHTML(this.node, html);
+  render(html, to = this.node) {
+    DOM.renderHTML(to, html);
+  }
+
+  /**
+   * Set page title and subtitle
+   * @param {string} title
+   * @param {string} subtitle
+   */
+  setTitleAndSubtitle(title, subtitle) {
+    const titleEl = this.select(".main-header__title");
+    const subtitleEl = this.select(".main-header__subtitle");
+    this.render(title, titleEl);
+    this.render(subtitle, subtitleEl);
   }
 }

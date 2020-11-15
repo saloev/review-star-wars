@@ -75,4 +75,13 @@ export default {
   film(id) {
     return fetchDataAsync(`films/${id}/`);
   },
+  submitForm(data) {
+    progress(80);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        progress(100);
+        resolve();
+      }, 1000);
+    });
+  },
 };
