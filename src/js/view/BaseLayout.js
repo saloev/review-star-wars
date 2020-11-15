@@ -10,8 +10,19 @@ export default class BaseLayout extends BaseView {
 
     super.render(`
     <div class="main-layout">
-      <header class="main-header has-text-weight-bold is-size-2 has-text-centered">
-        Star Wars
+      <header class="main-header has-text-weight-bold is-size-2 has-text-centered mb-5">
+        <section class="hero is-medium is-primary is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                STAR WARS
+              </h1>
+              <h2 class="subtitle">
+                Review STAR WARS films
+              </h2>
+            </div>
+          </div>
+        </section>
       </header>
       <main class="main-content content has-text-centered"></main>
       <footer class="main-footer footer">

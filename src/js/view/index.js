@@ -8,18 +8,18 @@ import FilmList from "./FilmList";
 export default () => {
   const components = [
     {
-      component: APILoader,
-    },
-    {
-      component: AppLayout,
-    },
-    {
       component: BaseLayout,
       waitUntilDataLoaded: true,
     },
     {
       component: FilmList,
       waitUntilDataLoaded: true,
+    },
+    {
+      component: APILoader,
+    },
+    {
+      component: AppLayout,
     },
   ];
 

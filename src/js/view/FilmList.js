@@ -27,10 +27,10 @@ export default class BaseLayout extends BaseView {
       </header>
       <div class="card-content">
         <div class="content has-text-left">
-          <p class=""><strong>director:</strong> ${director}</p>  
-          <p class=""><strong>producer:</strong> ${producer}</p>  
+          <p class=""><strong>Director:</strong> ${director}</p>  
+          <p class=""><strong>Producer:</strong> ${producer}</p>  
           <p class="subtitle">${desc}</p>
-          <time datetime="${releaseDate}"><strong>release date:</strong> ${releaseDate}</time>
+          <time datetime="${releaseDate}"><strong>Release date:</strong> ${releaseDate}</time>
         </div>
       </div>
       <footer class="card-footer">
@@ -47,10 +47,10 @@ export default class BaseLayout extends BaseView {
 
   renderHTML() {
     const list = this.filmList.reduce(
-      (html, film) => `${html}<li class="column is-half">${this.filmTemplate(film)}</li>`,
+      (html, film) => `${html}<div class="column is-half">${this.filmTemplate(film)}</div>`,
       ""
     );
-    super.render(`<ul class="columns is-multiline">${list}</ul>`);
+    super.render(`<div class="container"><div class="columns is-multiline">${list}</div></div>`);
   }
 
   initEvents = () => {};
